@@ -91,7 +91,7 @@ const Login = () => {
             mb={4}
             color="secondary.light"
           >
-            Logi
+            Login
           </Typography>
 
           <Formik
