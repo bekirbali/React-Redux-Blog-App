@@ -28,7 +28,7 @@ const RegisterForm = ({
   errors,
   touched,
 }) => {
-  //   const { loading } = useSelector((state) => state.authReducer);
+  const { loading } = useSelector((state) => state.authReducer);
   return (
     <div>
       <Form>
@@ -99,7 +99,7 @@ const RegisterForm = ({
             helperText={touched.password && errors.password}
             error={touched.password && Boolean(errors.password)}
           />
-          <LoadingButton variant="contained" type="submit">
+          <LoadingButton variant="contained" type="submit" loading={loading}>
             Register
           </LoadingButton>
         </Box>

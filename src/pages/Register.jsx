@@ -3,13 +3,13 @@ import LockIcon from "@mui/icons-material/Lock";
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
 import image from "../assets/blog.jpg";
-// import useAuthCall from "../hooks/useAuthCall";
+import useAuthCall from "../hooks/useAuthCall";
 import { Formik } from "formik";
 import RegisterForm from "../components/RegisterForm";
 import { registerSchema } from "../components/RegisterForm";
 
 const Register = () => {
-  // const { register } = useAuthCall();
+  const { register } = useAuthCall();
 
   return (
     <Container>
@@ -54,7 +54,7 @@ const Register = () => {
             }}
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {
-              // register({ ...values, password2: values.password });
+              register({ ...values, password2: values.password });
               actions.resetForm();
               actions.setSubmitting(false);
             }}

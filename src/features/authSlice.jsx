@@ -1,40 +1,46 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  loading: false,
-  error: false,
-  currentUser: null,
-  isAdmin: false,
-  token: null,
-};
+// const initialState = {
+//   loading: false,
+//   error: false,
+//   currentUser: null,
+//   isAdmin: false,
+//   token: null,
+// };
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: {
+    loading: false,
+    error: false,
+    currentUser: null,
+    isAdmin: false,
+    token: null,
+  },
   reducers: {
-    fetchStart(state) {
+    fetchStart: (state) => {
       state.loading = true;
       state.error = false;
     },
-    loginSuccess(state, { payload }) {
+    loginSuccess: (state, { payload }) => {
       state.loading = false;
       state.currentUser = payload?.user?.username;
-      state.currentUser = payload?.user?.is_admin;
-      state.currentUser = payload?.key;
+      state.isAdmin = payload?.user?.is_admin;
+      state.token = payload?.key;
     },
-    registerSuccess(state, { payload }) {
+    registerSuccess: (state, { payload }) => {
       state.loading = false;
       state.currentUser = payload?.username;
-      state.currentUser = payload?.token;
+      state.token = payload?.token;
       state.error = false;
     },
-    logoutSuccess(state) {
+    logoutSuccess: (state) => {
       state.loading = false;
       state.error = false;
       state.currentUser = null;
       state.token = null;
     },
-    fetchFail(state) {
+    fetchFail: (state) => {
       state.loading = false;
       state.error = true;
     },
