@@ -50,12 +50,12 @@ import LockIcon from "@mui/icons-material/Lock";
 import image from "../assets/blog.jpg";
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
-// import useAuthCall from "../hooks/useAuthCall";
+import useAuthCall from "../hooks/useAuthCall";
 import LoginForm from "../components/LoginForm";
 import { loginSchema } from "../components/LoginForm";
 
 const Login = () => {
-  // const { login } = useAuthCall();
+  const { login } = useAuthCall();
 
   return (
     <Container maxWidth="lg">
@@ -98,7 +98,7 @@ const Login = () => {
             initialValues={{ email: "", password: "" }}
             validationSchema={loginSchema}
             onSubmit={(values, { resetForm, setSubmitting }) => {
-              // login(values);
+              login(values);
               resetForm();
               setSubmitting(false);
             }}

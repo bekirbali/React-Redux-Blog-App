@@ -2,6 +2,7 @@ import { object, string } from "yup";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { Form } from "formik";
 import { Box, TextField } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export let loginSchema = object({
   email: string().email().required("Email is required"),
@@ -16,6 +17,7 @@ export let loginSchema = object({
 });
 
 const LoginForm = ({ handleBlur, handleChange, errors, touched, values }) => {
+  const { loading } = useSelector((state) => state.auth);
   return (
     <div>
       <Form>
@@ -28,8 +30,8 @@ const LoginForm = ({ handleBlur, handleChange, errors, touched, values }) => {
             variant="outlined"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values?.email}
-            error={touched.email && Boolean(touched.email)}
+            value={values?.email || ""}
+            error={touched.email && Boolean(errors.email)}
             helperText={touched.email && errors.email}
           />
           <TextField
@@ -40,13 +42,14 @@ const LoginForm = ({ handleBlur, handleChange, errors, touched, values }) => {
             variant="outlined"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values?.password}
-            error={touched.password && Boolean(touched.password)}
+            value={values?.password || ""}
+            error={touched.password && Boolean(errors.password)}
             helperText={touched.password && errors.password}
           />
           <LoadingButton
             type="submit"
             variant="contained"
+            loading={loading}
             sx={{ backgroundColor: "blue.light" }}
           >
             Submit
