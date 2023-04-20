@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 const Profile = () => {
-  return <div>Profile</div>;
+  return (
+    <>
+      <Navbar />
+      <div className="mt-[5rem]">Profile</div>
+    </>
+  );
 };
 
 export default Profile;
