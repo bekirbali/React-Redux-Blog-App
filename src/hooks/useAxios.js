@@ -6,7 +6,6 @@ const useAxios = () => {
 
   const instance = axios.create({
     baseURL: "http://32216.fullstack.clarusway.com/",
-    headers: { Authorization: `Token ${token}` },
   });
 
   return { instance };
