@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-import { Button, Grid, Typography } from "@mui/material";
 import BlogCard from "../components/BlogCard";
 import { useSelector } from "react-redux";
+import { Grid } from "@mui/material";
+import { flex } from "../styles/globalStyles";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
   const { blogs } = useSelector((state) => state.blog);
 
