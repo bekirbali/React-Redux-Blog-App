@@ -14,7 +14,7 @@ const useStockCall = () => {
   const getBlogData = async (url) => {
     dispatch(fetchStart());
     try {
-      const { data } = await instance.get(`stock/${url}/`);
+      const { data } = await instance.get(`api/${url}/`);
       dispatch(getSuccess({ data, url }));
     } catch (error) {
       dispatch(fetchFail());
@@ -51,23 +51,23 @@ const useStockCall = () => {
     }
   };
 
-  const getProCatBrand = async () => {
-    dispatch(fetchStart());
-    try {
-      const [products, categories, brands] = await Promise.all([
-        instance.get("stock/products/"),
-        instance.get("stock/categories/"),
-        instance.get("stock/brands/"),
-      ]);
-      dispatch(
-        getProCatBrandSuccess([products?.data, categories?.data, brands?.data])
-      );
-    } catch (error) {
-      dispatch(fetchFail());
-      toastErrorNotify("Getting data failed");
-      console.log(error);
-    }
-  };
+  // const getProCatBrand = async () => {
+  //   dispatch(fetchStart());
+  //   try {
+  //     const [products, categories, brands] = await Promise.all([
+  //       instance.get("stock/products/"),
+  //       instance.get("stock/categories/"),
+  //       instance.get("stock/brands/"),
+  //     ]);
+  //     dispatch(
+  //       getProCatBrandSuccess([products?.data, categories?.data, brands?.data])
+  //     );
+  //   } catch (error) {
+  //     dispatch(fetchFail());
+  //     toastErrorNotify("Getting data failed");
+  //     console.log(error);
+  //   }
+  // };
 
   const deleteBlogData = async (url, id) => {
     dispatch(fetchStart());
@@ -89,7 +89,6 @@ const useStockCall = () => {
     postBlogData,
     deleteBlogData,
     putBlogData,
-    getProCatBrand,
   };
 };
 
