@@ -197,7 +197,7 @@ Build a Milestone Blog App using ReactJS.
 
 ```
 
-- Post Update status
+- Post Update
 
 ```javascript
   endpoints => api/blogs/{post_id}/
