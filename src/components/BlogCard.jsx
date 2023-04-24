@@ -1,12 +1,18 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import {
+  Avatar,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import React from "react";
 
 const BlogCard = ({ blog }) => {
   return (
     <Card
       sx={{
-        marginTop: 5,
-        p: 2,
+        marginTop: 9,
+        p: 1,
         width: "300px",
         height: "400px",
         display: "flex",
@@ -18,6 +24,16 @@ const BlogCard = ({ blog }) => {
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {blog?.title}
+        </Typography>
+        <div className="flex justify-center">
+          <img
+            style={{ width: "150px", height: "150px", marginBottom: "1rem" }}
+            src={blog?.image}
+            alt=""
+          />
+        </div>
+        <Typography>
+          {blog?.content.split(" ").splice(0, 10).join(" ")}...
         </Typography>
       </CardContent>
       {/* <CardMedia

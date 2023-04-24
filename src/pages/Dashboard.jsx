@@ -23,7 +23,14 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <Grid container sx={(flex, { gap: 2 })}>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
         {blogs?.map((blog) => {
           return (
             <Grid item key={blog.id}>
