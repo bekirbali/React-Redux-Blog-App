@@ -1,11 +1,8 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
-import React from "react";
+import { Button, Card, CardContent, Grid, Typography } from "@mui/material";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
 const BlogCard = ({ blog }) => {
   return (
@@ -35,23 +32,31 @@ const BlogCard = ({ blog }) => {
         <Typography>
           {blog?.content.split(" ").splice(0, 10).join(" ")}...
         </Typography>
+        <Grid
+          container
+          sx={{ justifyContent: "center", marginTop: "1rem", gap: "1rem" }}
+        >
+          {!blog?.likes ? (
+            <Typography>
+              <FavoriteBorderOutlinedIcon /> {blog?.likes}
+            </Typography>
+          ) : (
+            <Typography>
+              <FavoriteOutlinedIcon /> {blog?.likes}
+            </Typography>
+          )}
+
+          <Typography>
+            <ChatBubbleOutlineOutlinedIcon /> {blog?.comment_count}
+          </Typography>
+          <Typography>
+            <VisibilityOutlinedIcon /> {blog?.post_views}
+          </Typography>
+        </Grid>
+        <Button variant="contained" sx={{ marginTop: "0.5rem" }}>
+          Read More
+        </Button>
       </CardContent>
-      {/* <CardMedia
-    sx={{ p: 1, objectFit: "contain", height: "130px" }}
-    image={blog?.image}
-    title="brand"
-  /> */}
-      {/* <CardActions sx={flex}>
-    <Button size="small">
-      <Delete
-        sx={btnStyle}
-        onClick={() => deleteStockData("brands", brand.id)}
-      />
-    </Button>
-    <Button size="small">
-      <Edit sx={btnStyle} onClick={handleEdit} />
-    </Button>
-  </CardActions> */}
     </Card>
   );
 };
