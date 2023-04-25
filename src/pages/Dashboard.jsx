@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import BlogCard from "../components/BlogCard";
 import { useSelector } from "react-redux";
 import { Grid } from "@mui/material";
-import { flex } from "../styles/globalStyles";
 import { useEffect } from "react";
 import useStockCall from "../hooks/useBlogCall";
 
