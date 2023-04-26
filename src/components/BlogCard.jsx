@@ -3,8 +3,10 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { useNavigate } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -47,13 +49,21 @@ const BlogCard = ({ blog }) => {
           )}
 
           <Typography>
-            <ChatBubbleOutlineOutlinedIcon /> {blog?.comment_count}
+            <ChatBubbleOutlineOutlinedIcon
+              role="button"
+              onClick={() => navigate(`/detail/${blog?.id}`, { state: blog })}
+            />{" "}
+            {blog?.comment_count}
           </Typography>
           <Typography>
             <VisibilityOutlinedIcon /> {blog?.post_views}
           </Typography>
         </Grid>
-        <Button variant="contained" sx={{ marginTop: "0.5rem" }}>
+        <Button
+          onClick={() => navigate(`/detail/${blog?.id}`, { state: blog })}
+          variant="contained"
+          sx={{ marginTop: "0.5rem" }}
+        >
           Read More
         </Button>
       </CardContent>

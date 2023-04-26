@@ -48,8 +48,8 @@ const Register = () => {
             initialValues={{
               username: "",
               password: "",
-              first_name: "",
-              last_name: "",
+              image: "",
+              bio: "",
               email: "",
             }}
             validationSchema={registerSchema}
