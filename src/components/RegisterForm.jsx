@@ -28,7 +28,7 @@ const RegisterForm = ({
   errors,
   touched,
 }) => {
-  const { loading } = useSelector((state) => state.authReducer);
+  const { loading } = useSelector((state) => state.auth);
   return (
     <div>
       <Form>
@@ -52,30 +52,6 @@ const RegisterForm = ({
             error={touched.username && Boolean(errors.username)}
           />
           <TextField
-            label="First Name"
-            name="first_name"
-            id="firstName"
-            type="text"
-            variant="outlined"
-            value={values.first_name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.first_name && errors.first_name}
-            error={touched.first_name && Boolean(errors.first_name)}
-          />
-          <TextField
-            label="Last Name"
-            name="last_name"
-            id="lastName"
-            type="text"
-            variant="outlined"
-            value={values.last_name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            helperText={touched.last_name && errors.last_name}
-            error={touched.last_name && Boolean(errors.last_name)}
-          />
-          <TextField
             label="Email"
             name="email"
             id="email"
@@ -86,6 +62,30 @@ const RegisterForm = ({
             onBlur={handleBlur}
             helperText={touched.email && errors.email}
             error={touched.email && Boolean(errors.email)}
+          />
+          <TextField
+            label="Image"
+            name="image"
+            id="image"
+            type="text"
+            variant="outlined"
+            value={values.image}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.image && errors.image}
+            error={touched.image && Boolean(errors.image)}
+          />
+          <TextField
+            label="Bio"
+            name="bio"
+            id="bio"
+            type="text"
+            variant="outlined"
+            value={values.bio}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            helperText={touched.bio && errors.bio}
+            error={touched.bio && Boolean(errors.bio)}
           />
           <TextField
             label="Password"

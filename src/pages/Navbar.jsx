@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import useAuthCall from "../hooks/useAuthCall";
 import CssBaseline from "@mui/material/CssBaseline";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -14,6 +15,8 @@ const Navbar = () => {
 
   const { currentUser } = useSelector((state) => state.auth);
   const { logout } = useAuthCall();
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -33,6 +36,8 @@ const Navbar = () => {
             variant="h6"
             noWrap
             component="div"
+            role="button"
+            onClick={() => navigate("/dashboard/")}
             sx={{ flexGrow: "1" }}
           >
             Stock App

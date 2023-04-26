@@ -109,7 +109,7 @@ const Login = () => {
             <Typography>
               Don't you have an account?{" "}
               <Link
-                to="/register"
+                to="/register/"
                 style={{ textDecoration: "underLine", color: "blue" }}
               >
                 Register
