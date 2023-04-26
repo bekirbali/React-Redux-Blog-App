@@ -8,8 +8,8 @@ export let registerSchema = object({
   username: string()
     .required("username is required")
     .min(4, "username must at least 4 char"),
-  first_name: string().required().min(2, "name must at least 2 char"),
-  last_name: string().required().min(2, "name must at least 2 char"),
+  image: string().required().min(2, "name must at least 2 char"),
+  bio: string().required().min(2, "name must at least 2 char"),
   email: string().email().required("email is required"),
   password: string()
     .required("password is required")
