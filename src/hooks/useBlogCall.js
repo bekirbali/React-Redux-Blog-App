@@ -3,7 +3,7 @@ import {
   fetchFail,
   fetchStart,
   getSuccess,
-  getProCatBrandSuccess,
+  // getProCatBrandSuccess,
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/Toastify";
 import useAxios from "./useAxios";

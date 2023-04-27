@@ -9,13 +9,14 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import useBlogCall from "../hooks/useBlogCall";
 import { useSelector } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { BorderBottom } from "@mui/icons-material";
 
 const Detail = () => {
   const { state: blog } = useLocation();
   const { getCommentData } = useBlogCall();
 
   const [showComment, setShowComment] = useState(false);
+
+  // const { image } = useSelector((state) => state.auth);
 
   const { comments } = useSelector((state) => state.blog);
 
@@ -37,7 +38,10 @@ const Detail = () => {
             src={blog?.image}
             alt=""
           />
-          <Typography>{blog?.author}</Typography>
+
+          <Typography>
+            <AccountCircleIcon /> {blog?.author}
+          </Typography>
           <Typography>
             {new Date(blog?.publish_date).toLocaleDateString("en-us", {
               weekday: "long",
@@ -103,7 +107,7 @@ const Detail = () => {
             return (
               <div key={comment?.id}>
                 <Typography sx={{ fontWeight: "bold" }}>
-                  {comment?.user}
+                  <AccountCircleIcon /> {comment?.user}
                 </Typography>
                 <Typography
                   sx={{ borderBottom: "1px solid gray", color: "#585858" }}
@@ -124,6 +128,7 @@ const Detail = () => {
               </div>
             );
           })}
+          {!comments.length && <p>no comment</p>}
         </Box>
       )}
     </div>
