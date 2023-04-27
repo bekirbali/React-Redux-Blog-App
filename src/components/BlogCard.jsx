@@ -16,7 +16,7 @@ const BlogCard = ({ blog }) => {
         height: "400px",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         textAlign: "center",
       }}
     >
@@ -31,12 +31,16 @@ const BlogCard = ({ blog }) => {
             alt=""
           />
         </div>
-        <Typography>
+        <Typography sx={{ height: "100px" }}>
           {blog?.content.split(" ").splice(0, 10).join(" ")}...
         </Typography>
         <Grid
           container
-          sx={{ justifyContent: "center", marginTop: "1rem", gap: "1rem" }}
+          sx={{
+            justifyContent: "center",
+            marginTop: "1rem",
+            gap: "1rem",
+          }}
         >
           {!blog?.likes ? (
             <Typography>
