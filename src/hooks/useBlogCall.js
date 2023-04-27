@@ -8,7 +8,7 @@ import {
 import { toastErrorNotify, toastSuccessNotify } from "../helper/Toastify";
 import useAxios from "./useAxios";
 
-const useStockCall = () => {
+const useBlogCall = () => {
   const dispatch = useDispatch();
   const { instance } = useAxios();
   const getBlogData = async (url) => {
@@ -19,6 +19,21 @@ const useStockCall = () => {
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Getting data failed");
+      console.log(error);
+    }
+  };
+
+  const getCommentData = async (url, info) => {
+    dispatch(fetchStart());
+    try {
+      await instance.put(`api/${url}/${info.id}/`, info);
+      toastSuccessNotify(
+        `${url.slice(0, url.length - 1)} updated successfully`
+      );
+      getBlogData(url);
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Updating data failed");
       console.log(error);
     }
   };
@@ -35,7 +50,6 @@ const useStockCall = () => {
       console.log(error);
     }
   };
-
   const putBlogData = async (url, info) => {
     dispatch(fetchStart());
     try {
@@ -89,7 +103,8 @@ const useStockCall = () => {
     postBlogData,
     deleteBlogData,
     putBlogData,
+    getCommentData,
   };
 };
 
-export default useStockCall;
+export default useBlogCall;

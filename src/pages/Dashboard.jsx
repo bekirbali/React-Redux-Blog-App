@@ -4,7 +4,7 @@ import BlogCard from "../components/BlogCard";
 import { useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useEffect } from "react";
-import useStockCall from "../hooks/useBlogCall";
+import useBlogCall from "../hooks/useBlogCall";
 
 const Dashboard = () => {
   // const [open, setOpen] = useState(false);
@@ -12,7 +12,7 @@ const Dashboard = () => {
   // const handleClose = () => setOpen(false);
 
   const { blogs } = useSelector((state) => state.blog);
-  const { getBlogData } = useStockCall();
+  const { getBlogData } = useBlogCall();
 
   useEffect(() => {
     getBlogData("blogs");
