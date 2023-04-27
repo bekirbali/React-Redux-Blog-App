@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { useLocation } from "react-router-dom";
 import { Box, Grid, Typography } from "@mui/material";
@@ -6,10 +6,23 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import useBlogCall from "../hooks/useBlogCall";
+import { useSelector } from "react-redux";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { BorderBottom } from "@mui/icons-material";
 
 const Detail = () => {
   const { state: blog } = useLocation();
-  console.log(blog);
+  const { getCommentData } = useBlogCall();
+
+  const [showComment, setShowComment] = useState(false);
+
+  const { comments } = useSelector((state) => state.blog);
+
+  useEffect(() => {
+    getCommentData("comments", blog.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="flex flex-col w-[50%] m-auto p-3">
       <Navbar />
@@ -67,7 +80,10 @@ const Detail = () => {
           )}
 
           <Typography>
-            <ChatBubbleOutlineOutlinedIcon role="button" />{" "}
+            <ChatBubbleOutlineOutlinedIcon
+              role="button"
+              onClick={() => setShowComment(!showComment)}
+            />{" "}
             {blog?.comment_count}
           </Typography>
           <Typography>
@@ -75,6 +91,41 @@ const Detail = () => {
           </Typography>
         </Grid>
       </Box>
+      {showComment && (
+        <Box
+          sx={{
+            marginTop: "2rem",
+            borderBottom: "1px solid black",
+            padding: "0.5rem",
+          }}
+        >
+          {comments.map((comment) => {
+            return (
+              <div key={comment?.id}>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  {comment?.user}
+                </Typography>
+                <Typography
+                  sx={{ borderBottom: "1px solid gray", color: "#585858" }}
+                >
+                  {new Date(comment?.time_stamp).toLocaleDateString("en-us", {
+                    weekday: "short",
+                  })}
+                  ,{" "}
+                  {new Date(comment?.time_stamp).toLocaleDateString("en-us", {
+                    day: "numeric",
+                    month: "short",
+                  })}{" "}
+                  {new Date(comment?.time_stamp).toLocaleDateString("en-us", {
+                    year: "numeric",
+                  })}
+                </Typography>
+                <Typography>{comment?.content}</Typography>
+              </div>
+            );
+          })}
+        </Box>
+      )}
     </div>
   );
 };
