@@ -11,6 +11,7 @@ import useAxios from "./useAxios";
 const useBlogCall = () => {
   const dispatch = useDispatch();
   const { instance } = useAxios();
+
   const getBlogData = async (url) => {
     dispatch(fetchStart());
     try {
@@ -32,6 +33,19 @@ const useBlogCall = () => {
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Updating data failed");
+      console.log(error);
+    }
+  };
+
+  const postComment = async (url, info) => {
+    dispatch(fetchStart());
+    try {
+      await instance.post(`api/${url}/`, info);
+      toastSuccessNotify(`${url.slice(0, url.length - 1)} posted successfully`);
+      getBlogData(url);
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Posting data failed");
       console.log(error);
     }
   };
@@ -102,6 +116,7 @@ const useBlogCall = () => {
     deleteBlogData,
     putBlogData,
     getCommentData,
+    postComment,
   };
 };
 
