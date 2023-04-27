@@ -23,14 +23,12 @@ const useBlogCall = () => {
     }
   };
 
-  const getCommentData = async (url, info) => {
+  const getCommentData = async (url, id) => {
     dispatch(fetchStart());
     try {
-      await instance.put(`api/${url}/${info.id}/`, info);
-      toastSuccessNotify(
-        `${url.slice(0, url.length - 1)} updated successfully`
-      );
-      getBlogData(url);
+      const { data } = await instance.get(`api/${url}/${id}/`);
+      dispatch(getSuccess({ data, url }));
+      console.log(data);
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Updating data failed");
