@@ -5,7 +5,7 @@ const MyBlogs = () => {
   return (
     <>
       <Navbar />
-      <div className="mt-[5rem]">MyBlogs</div>
+      <div>MyBlogs</div>
     </>
   );
 };

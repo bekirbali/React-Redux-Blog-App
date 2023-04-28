@@ -10,7 +10,7 @@ const BlogCard = ({ blog }) => {
   return (
     <Card
       sx={{
-        marginTop: 9,
+        marginBottom: "1rem",
         p: 1,
         width: "300px",
         height: "400px",

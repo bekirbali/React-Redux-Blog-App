@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import useBlogCall from "../hooks/useBlogCall";
+import axios from "axios";
 
 const Dashboard = () => {
   // const [open, setOpen] = useState(false);
@@ -14,8 +15,16 @@ const Dashboard = () => {
   const { blogs } = useSelector((state) => state.blog);
   const { getBlogData } = useBlogCall();
 
+  const getBlog = async () => {
+    const { data } = await axios(
+      `http://32216.fullstack.clarusway.com/api/blogs/`
+    );
+    console.log(data);
+  };
+
   useEffect(() => {
     getBlogData("blogs");
+    getBlog();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -5,7 +5,7 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="mt-[5rem]">Profile</div>
+      <div>Profile</div>
     </>
   );
 };
