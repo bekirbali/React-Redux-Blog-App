@@ -43,11 +43,7 @@ const Detail = () => {
     <>
       <Navbar />
       <div className="flex flex-col w-[50%] m-auto p-3">
-        <Box
-          sx={{
-            marginTop: "5rem",
-          }}
-        >
+        <Box>
           <div className="text-left mt-3 w-[350px] mx-auto shadow-lg p-2">
             <img
               style={{ height: "350px", width: "350px", margin: "0 auto" }}
