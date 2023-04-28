@@ -88,6 +88,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import useAuthCall from "../hooks/useAuthCall";
 
 const pages = ["Dashboard", "New Blog", "About"];
 const settings = ["My Blogs", "Profile", "Logout"];
@@ -96,6 +97,7 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  const { logout } = useAuthCall();
   const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
@@ -116,8 +118,14 @@ function Navbar() {
   const { image } = useSelector((state) => state.auth);
 
   const navMenuClickHandler = (e) => {
-    console.log(e.target.innerText.toLowerCase());
-    navigate(`/${e.target.innerText.toLowerCase().split(" ").join("-")}`);
+    console.log(e.target.innerText.toLowerCase() === "logout");
+    if (e.target.innerText.toLowerCase() === "logout") {
+      console.log("hey");
+      navigate("/");
+      logout();
+    } else {
+      navigate(`/${e.target.innerText.toLowerCase().split(" ").join("-")}`);
+    }
   };
 
   return (
@@ -196,7 +204,7 @@ function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={navMenuClickHandler}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
