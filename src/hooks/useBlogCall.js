@@ -50,10 +50,23 @@ const useBlogCall = () => {
     }
   };
 
+  const getCategories = async (url) => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await instance.get(`api/${url}/`);
+      dispatch(getSuccess({ data, url }));
+      console.log(data);
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Updating data failed");
+      console.log(error);
+    }
+  };
+
   const postBlogData = async (url, info) => {
     dispatch(fetchStart());
     try {
-      await instance.post(`stock/${url}/`, info);
+      await instance.post(`api/${url}/`, info);
       toastSuccessNotify(`${url.slice(0, url.length - 1)} posted successfully`);
       getBlogData(url);
     } catch (error) {
@@ -117,6 +130,7 @@ const useBlogCall = () => {
     putBlogData,
     getCommentData,
     postComment,
+    getCategories,
   };
 };
 
