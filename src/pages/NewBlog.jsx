@@ -27,7 +27,7 @@ const NewBlog = () => {
     content: "",
     image: "",
     category: "",
-    status: "",
+    status: "p",
   });
 
   const handleChange = (e) => {
@@ -51,8 +51,6 @@ const NewBlog = () => {
     getCategories("categories");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const values = [1, 2];
 
   return (
     <>
@@ -115,24 +113,6 @@ const NewBlog = () => {
                         </MenuItem>
                       );
                     })}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Status</InputLabel>
-                  <Select
-                    labelId="status"
-                    id="status"
-                    name="status"
-                    label="status"
-                    value={info?.status}
-                    onChange={handleChange}
-                  >
-                    <MenuItem key="1" value={values[0]}>
-                      p
-                    </MenuItem>
-                    <MenuItem key="2" value={values[1]}>
-                      d
-                    </MenuItem>
                   </Select>
                 </FormControl>
                 <TextField
