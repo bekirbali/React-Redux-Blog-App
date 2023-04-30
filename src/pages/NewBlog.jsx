@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import useAuthCall from "../hooks/useAuthCall";
 import { useEffect, useState } from "react";
 import useBlogCall from "../hooks/useBlogCall";
 import { useSelector } from "react-redux";
@@ -17,7 +16,6 @@ import { LoadingButton } from "@mui/lab";
 import Navbar from "./Navbar";
 
 const NewBlog = () => {
-  const { login } = useAuthCall();
   const { getCategories, postBlogData } = useBlogCall();
   const { categories } = useSelector((state) => state.blog);
   const { loading } = useSelector((state) => state.auth);
@@ -43,7 +41,6 @@ const NewBlog = () => {
       ...info,
       ...info,
     });
-    console.log(info);
     postBlogData("blogs", info);
   };
 

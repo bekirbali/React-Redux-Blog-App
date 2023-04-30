@@ -55,7 +55,6 @@ const useBlogCall = () => {
     try {
       const { data } = await instance.get(`api/${url}/`);
       dispatch(getSuccess({ data, url }));
-      console.log(data);
     } catch (error) {
       dispatch(fetchFail());
       toastErrorNotify("Updating data failed");
