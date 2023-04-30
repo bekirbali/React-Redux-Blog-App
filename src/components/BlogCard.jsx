@@ -44,11 +44,20 @@ const BlogCard = ({ blog }) => {
         >
           {!blog?.likes ? (
             <Typography>
-              <FavoriteBorderOutlinedIcon /> {blog?.likes}
+              <FavoriteBorderOutlinedIcon
+                role="button"
+                onClick={() => console.log("hello")}
+              />{" "}
+              {blog?.likes}
             </Typography>
           ) : (
             <Typography>
-              <FavoriteOutlinedIcon /> {blog?.likes}
+              <FavoriteOutlinedIcon
+                sx={{ color: "red" }}
+                role="button"
+                onClick={() => console.log("hello")}
+              />{" "}
+              {blog?.likes}
             </Typography>
           )}
 
