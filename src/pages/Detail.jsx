@@ -44,7 +44,7 @@ const Detail = () => {
       <Navbar />
       <div className="flex flex-col w-[50%] m-auto p-3">
         <Box>
-          <div className="text-left mt-3 w-[350px] mx-auto shadow-lg p-2">
+          <div className="text-left mt-3 w-[350px] mx-auto shadow-[0_-2px_0.3rem_0.3rem_rgba(17,89,138,0.5)] p-2">
             <img
               style={{ height: "350px", width: "350px", margin: "0 auto" }}
               src={blog?.image}
@@ -138,8 +138,17 @@ const Detail = () => {
                       year: "numeric",
                     })}
                   </Typography>
-                  <Typography sx={{ borderBottom: "1px solid black" }}>
-                    {comment?.content}
+                  <Typography
+                    sx={{
+                      borderBottom: "1px solid black",
+                      marginBottom: "1rem",
+                      marginTop: "1rem",
+                      boxShadow: "0 0 0.1rem 0.1rem rgba(0,0,0,0.5)",
+                      padding: "0.2rem",
+                    }}
+                  >
+                    {comment?.content.charAt(0).toUpperCase() +
+                      comment?.content.slice(1)}
                   </Typography>
                 </div>
               );

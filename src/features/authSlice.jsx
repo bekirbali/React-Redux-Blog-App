@@ -16,6 +16,7 @@ const authSlice = createSlice({
     currentUser: null,
     image: null,
     bio: null,
+    email: null,
     isAdmin: false,
     token: null,
   },
@@ -30,6 +31,7 @@ const authSlice = createSlice({
       state.isAdmin = payload?.user?.is_admin;
       state.token = payload?.key;
       state.image = payload?.user?.image;
+      state.email = payload?.user?.email;
       state.bio = payload?.user?.bio;
     },
     registerSuccess: (state, { payload }) => {
