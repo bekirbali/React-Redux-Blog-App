@@ -118,9 +118,7 @@ function Navbar() {
   const { image } = useSelector((state) => state.auth);
 
   const navMenuClickHandler = (e) => {
-    console.log(e.target.innerText.toLowerCase() === "logout");
     if (e.target.innerText.toLowerCase() === "logout") {
-      console.log("hey");
       navigate("/");
       logout();
     } else {
