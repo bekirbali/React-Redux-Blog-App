@@ -59,7 +59,7 @@ const NewBlog = () => {
         maxWidth="sm"
         sx={{
           width: "50%",
-          boxShadow: "2px 2px 0.5rem 0.5rem rgba(0, 0, 0, 0.5)",
+          boxShadow: "0 0 0.3rem 0.3rem rgba(17, 89, 138, 0.5)",
           borderRadius: "0.5rem",
           padding: "1rem",
         }}
