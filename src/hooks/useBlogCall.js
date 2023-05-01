@@ -89,6 +89,19 @@ const useBlogCall = () => {
     }
   };
 
+  const postRead = async (url, info) => {
+    dispatch(fetchStart());
+    try {
+      await instance.post(`api/${url}/`, info);
+      toastSuccessNotify(`${url.slice(0, url.length - 1)} posted successfully`);
+      getBlogData(url);
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Posting data failed");
+      console.log(error);
+    }
+  };
+
   // const getProCatBrand = async () => {
   //   dispatch(fetchStart());
   //   try {
@@ -130,6 +143,7 @@ const useBlogCall = () => {
     getCommentData,
     postComment,
     getCategories,
+    postRead,
   };
 };
 
