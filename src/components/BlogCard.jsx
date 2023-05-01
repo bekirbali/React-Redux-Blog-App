@@ -4,9 +4,19 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const BlogCard = ({ blog }) => {
   const navigate = useNavigate();
+
+  const readMoreHandler = () => {
+    navigate(`/detail/${blog?.id}`, { state: blog });
+  };
+
+  const { likes } = useSelector((state) => state.blog);
+  const [like, setLike] = useState(likes.length);
+
   return (
     <Card
       sx={{
@@ -42,22 +52,22 @@ const BlogCard = ({ blog }) => {
             gap: "1rem",
           }}
         >
-          {!blog?.likes ? (
+          {!like ? (
             <Typography>
               <FavoriteBorderOutlinedIcon
                 role="button"
-                onClick={() => console.log("hello")}
+                onClick={() => setLike(like + 1)}
               />{" "}
-              {blog?.likes}
+              {like}
             </Typography>
           ) : (
             <Typography>
               <FavoriteOutlinedIcon
                 sx={{ color: "red" }}
                 role="button"
-                onClick={() => console.log("hello")}
+                onClick={() => setLike(like - 1)}
               />{" "}
-              {blog?.likes}
+              {like}
             </Typography>
           )}
 
@@ -73,7 +83,7 @@ const BlogCard = ({ blog }) => {
           </Typography>
         </Grid>
         <Button
-          onClick={() => navigate(`/detail/${blog?.id}`, { state: blog })}
+          onClick={readMoreHandler}
           variant="contained"
           sx={{ marginTop: "0.5rem" }}
         >
