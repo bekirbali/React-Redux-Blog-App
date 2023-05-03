@@ -102,28 +102,10 @@ const useBlogCall = () => {
     }
   };
 
-  // const getProCatBrand = async () => {
-  //   dispatch(fetchStart());
-  //   try {
-  //     const [products, categories, brands] = await Promise.all([
-  //       instance.get("stock/products/"),
-  //       instance.get("stock/categories/"),
-  //       instance.get("stock/brands/"),
-  //     ]);
-  //     dispatch(
-  //       getProCatBrandSuccess([products?.data, categories?.data, brands?.data])
-  //     );
-  //   } catch (error) {
-  //     dispatch(fetchFail());
-  //     toastErrorNotify("Getting data failed");
-  //     console.log(error);
-  //   }
-  // };
-
   const deleteBlogData = async (url, id) => {
     dispatch(fetchStart());
     try {
-      await instance.delete(`stock/${url}/${id}`);
+      await instance.delete(`api/${url}/${id}`);
       toastSuccessNotify(
         `${url.slice(0, url.length - 1)} deleted successfully`
       );
