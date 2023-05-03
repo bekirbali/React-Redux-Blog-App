@@ -153,7 +153,7 @@ const Detail = () => {
                 </div>
               );
             })}
-            {!comments.length && <p>no comment</p>}
+            {!comments.length && <p>No Comment</p>}
 
             <form className="flex flex-col">
               <TextField
